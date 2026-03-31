@@ -64,19 +64,22 @@ export default function Hero() {
           {/* Subtle Glow - Extremely tight and dim to fix 'gray circle too big' */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] aspect-square bg-white/[0.015] rounded-full blur-[100px] pointer-events-none z-0" />
           
-          <div className="relative z-10 w-80 h-80 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] flex items-center justify-center">
+          <div className="relative z-10 w-80 md:w-[28rem] lg:w-[32rem] min-h-[30rem] md:min-h-[40rem] flex items-center justify-center">
             {/* The Image Wrapper - Pure black container to eliminate box edge visible on black background */}
             <div 
               className="relative w-full h-full grayscale group-hover:grayscale-0 transition-all duration-1000 ease-in-out flex items-center justify-center"
               style={{ 
-                WebkitMaskImage: 'radial-gradient(circle at center, black 40%, transparent 75%)',
-                maskImage: 'radial-gradient(circle at center, black 40%, transparent 75%)'
+                WebkitMaskImage: 'radial-gradient(circle at 50% 40%, black 75%, transparent 100%)',
+                maskImage: 'radial-gradient(circle at 50% 40%, black 75%, transparent 100%)'
               }}
             >
                <img
                 src={profileImg}
                 alt="Jet-Jet C. Jancinal"
-                className="w-full h-full object-contain scale-[1.15]"
+                className="w-full h-full object-contain"
+                style={{ 
+                  filter: 'drop-shadow(0 0 1px #000) drop-shadow(0 0 2px #000)'
+                }}
               />
             </div>
           </div>
