@@ -1,0 +1,58 @@
+import { motion } from 'framer-motion';
+
+export default function Footer() {
+  const currentYear = new Date().getFullYear();
+  
+  const socialLinks = [
+    { name: 'Github', url: '#' },
+    { name: 'LinkedIn', url: '#' },
+    { name: 'Facebook', url: '#' },
+  ];
+
+  return (
+    <footer className="bg-bg-primary border-t border-white/5 py-12 px-6">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+        
+        {/* Logo / Name */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-xl font-heading font-bold text-white tracking-widest uppercase"
+        >
+          JET<span className="opacity-40 italic">JET</span>
+        </motion.div>
+
+        {/* Social Links */}
+        <div className="flex gap-8">
+          {socialLinks.map((link) => (
+            <motion.a
+              key={link.name}
+              href={link.url}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-xs font-bold uppercase tracking-widest text-text-secondary hover:text-white transition-colors"
+            >
+              {link.name}
+            </motion.a>
+          ))}
+        </div>
+
+        {/* Copyright */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-[0.65rem] font-medium text-white/30 uppercase tracking-[0.2em]"
+        >
+          &copy; {currentYear} Jet-Jet C. Jancinal. All rights reserved.
+        </motion.div>
+
+      </div>
+
+      {/* Extreme Bottom Accent */}
+      <div className="max-w-7xl mx-auto mt-12 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+    </footer>
+  );
+}
