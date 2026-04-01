@@ -4,16 +4,14 @@ const timeline = [
   {
     school: 'Cebu Eastern College',
     degree: 'BS Information Technology',
-    period: '2022 – Present',
-    status: '3rd Year Student',
-    description: 'Focusing on building high-performance web systems and mastering modern frontend architectures.',
+    period: '2022 – 2026',
+    status: 'Graduated',
   },
   {
     school: 'Abellana National School',
-    degree: 'Senior High School',
-    period: 'Graduated',
-    status: null,
-    description: 'Foundational studies in ICT and software logic.',
+    degree: 'Junior High School & Senior High School',
+    period: '2016 –  2022',
+    status: 'Graduated',
   },
 ];
 
@@ -51,7 +49,7 @@ export default function Education() {
               >
                 {/* Marker */}
                 <div className="absolute -left-8 md:-left-12 top-2 w-4 h-4 rounded-full border border-white bg-bg-section group-hover:bg-white transition-colors duration-500 z-10" />
-                
+
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                   <div>
                     <h3 className="text-xl md:text-2xl font-bold text-white font-heading">
@@ -61,11 +59,11 @@ export default function Education() {
                   </div>
                   <div className="flex items-center gap-4">
                     {item.status && (
-                      <span className="text-[0.65rem] font-bold uppercase tracking-widest px-3 py-1 border border-white/20 rounded-full text-white/60">
+                      <span className="text-[0.6rem] font-black uppercase tracking-[0.1em] px-3 py-1 bg-white text-black rounded-full shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                         {item.status}
                       </span>
                     )}
-                    <span className="text-[0.7rem] font-bold uppercase tracking-widest text-text-secondary">
+                    <span className="text-[0.75rem] font-medium tracking-tight text-white/40 tabular-nums">
                       {item.period}
                     </span>
                   </div>

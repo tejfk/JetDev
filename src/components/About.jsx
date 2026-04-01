@@ -18,7 +18,7 @@ export default function About() {
           </div>
           <div className="pl-4 border-l border-white/10">
             <p className="text-text-secondary text-sm font-medium max-w-xs leading-relaxed">
-              3rd Year IT Student at Cebu Eastern College, dedicated to the art of clean code and functional systems.
+              BS Information Technology Graduate from Cebu Eastern College, dedicated to the art of clean code and functional systems.
             </p>
           </div>
         </motion.div>
@@ -31,18 +31,18 @@ export default function About() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
           <h2 className="font-heading text-3xl md:text-5xl font-bold text-white tracking-tight mb-8">
-            The Human Behind the Code<span className="text-white/20">.</span>
+            Professional Web Development based in Cebu City<span className="text-white/20">.</span>
           </h2>
           
           <div className="space-y-6 text-lg text-text-secondary leading-relaxed">
             <p>
-              I’m Jet-Jet, a developer based in Cebu City who believes that great technology shouldn't feel like a chore to use. As a 3rd-year IT student, I've spent less time on "hello world" exercises and more time building systems that actual people use—from digital marketplaces to complex admin dashboards.
+              I am Jet Jet, a dedicated web developer who prioritizes reliability and clear communication in every project. A graduate of Bachelor of Science in Information Technology from Cebu Eastern College, I have moved beyond academic theory to deliver practical high quality solutions for real world applications.
             </p>
             <p>
-              My focus is on **interactive web applications**. I enjoy the challenge of taking a complex business process and distilling it into a clean, intuitive interface. Whether it's a bidding system for a marketplace or a decision-tool for administrators, my goal is always the same: **Simplicity on the surface, power underneath.**
+              I specialize in building robust web environments that streamline business operations. My experience includes developing intuitive marketplaces and architecting complex administrative tools. I focus on creating stable scalable codebases that provide a seamless experience for both users and administrators.
             </p>
             <p>
-              When I'm not coding, I'm usually exploring new design trends or learning about the latest shifts in frontend architecture. I'm currently looking for opportunities where I can apply my "builder" mindset to real-world products.
+              Professionalism and attention to detail are at the core of my work. I am committed to delivering projects that meet industry standards while ensuring they are easy to maintain and grow. I am always seeking new challenges where I can contribute to meaningful projects and help businesses succeed through technology.
             </p>
           </div>
 

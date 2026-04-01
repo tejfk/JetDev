@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import logo from '../assets/logo-jp.svg';
+import Magnetic from './Magnetic';
+
 const navLinks = [
   { label: 'Home', href: '#' },
   { label: 'Projects', href: '#projects' },
@@ -8,7 +11,7 @@ const navLinks = [
   { label: 'Contact', href: '#contact' },
 ];
 
-export default function Navbar() {
+export default function Navbar({ onOpenResume }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -21,22 +24,19 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-bg-primary/80 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'
+        scrolled ? 'bg-bg-primary/80 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-8'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+      <div className="max-w-screen-2xl mx-auto px-10 md:px-20 flex items-center justify-between">
         {/* Logo */}
-        <motion.a
-          href="#"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-xl font-heading font-bold tracking-tighter text-white"
-        >
-          JET<span className="text-text-secondary">.</span>DEV
-        </motion.a>
+        <Magnetic>
+          <a href="#home" className="flex items-center gap-4 z-50">
+            <img src={logo} alt="Logo" className="w-16 h-16 object-contain" />
+          </a>
+        </Magnetic>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-16">
           {navLinks.map((link, i) => (
             <motion.a
               key={link.label}
@@ -52,15 +52,13 @@ export default function Navbar() {
         </div>
 
         {/* Desktop CTA */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="hidden md:block"
-        >
-          <a href="#contact" className="btn-bw-minimal">
-            Hire Me
-          </a>
-        </motion.div>
+        <div className="hidden lg:flex items-center gap-8">
+          <Magnetic>
+            <a href="#contact" className="btn-bw-primary translate-y-2">
+              Hire Me
+            </a>
+          </Magnetic>
+        </div>
 
         {/* Mobile Toggle */}
         <button

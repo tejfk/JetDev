@@ -1,26 +1,27 @@
 import { motion } from 'framer-motion';
+import logo from '../assets/logo-jp.svg';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  
+
   const socialLinks = [
     { name: 'Github', url: '#' },
     { name: 'LinkedIn', url: '#' },
-    { name: 'Facebook', url: '#' },
+    { name: 'Facebook', url: 'https://www.facebook.com/tejey03' },
   ];
 
   return (
     <footer className="bg-bg-primary border-t border-white/5 py-12 px-6">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-        
+
         {/* Logo / Name */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-xl font-heading font-bold text-white tracking-widest uppercase"
+          className="flex items-center gap-3"
         >
-          JET<span className="opacity-40 italic">JET</span>
+          <img src={logo} alt="Logo" className="w-10 h-10 object-contain" />
         </motion.div>
 
         {/* Social Links */}
@@ -46,7 +47,7 @@ export default function Footer() {
           viewport={{ once: true }}
           className="text-[0.65rem] font-medium text-white/30 uppercase tracking-[0.2em]"
         >
-          &copy; {currentYear} Jet-Jet C. Jancinal. All rights reserved.
+          &copy; {currentYear} Jet Jet C. Jancinal. All rights reserved.
         </motion.div>
 
       </div>
