@@ -6,12 +6,21 @@ const timeline = [
     degree: 'BS Information Technology',
     period: '2022 – 2026',
     status: 'Graduated',
+    description: 'Focused on core Information Technology principles, software engineering, and advanced web development. Developed a strong foundation in building robust, scalable systems and modern user architectures.',
   },
   {
     school: 'Abellana National School',
-    degree: 'Junior High School & Senior High School',
-    period: '2016 –  2022',
+    degree: 'Junior & Senior High School',
+    period: '2016 – 2022',
     status: 'Graduated',
+    description: 'Completed secondary education with a specialized focus on academic achievement and early exploration of computer science and technical logic.',
+  },
+  {
+    school: 'City Central Elementary School',
+    degree: 'Elementary Education',
+    period: '2010 – 2016',
+    status: 'Graduated',
+    description: 'Completed primary education foundations with a consistent focus on academic excellence and early participation in school activities.',
   },
 ];
 

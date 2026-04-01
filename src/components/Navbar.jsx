@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import logo from '../assets/logo-jp.svg';
 import Magnetic from './Magnetic';
 
 const navLinks = [
@@ -28,13 +27,6 @@ export default function Navbar({ onOpenResume }) {
       }`}
     >
       <div className="max-w-screen-2xl mx-auto px-10 md:px-20 flex items-center justify-between">
-        {/* Logo */}
-        <Magnetic>
-          <a href="#home" className="flex items-center gap-4 z-50">
-            <img src={logo} alt="Logo" className="w-16 h-16 object-contain" />
-          </a>
-        </Magnetic>
-
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-16">
           {navLinks.map((link, i) => (

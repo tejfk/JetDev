@@ -1,75 +1,83 @@
 import { motion } from 'framer-motion';
 
-export default function ProjectCard({ project, index, onVideoClick }) {
+export default function ProjectCard({ project, index, onOpenDetails }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      whileHover="hover"
+      whileTap="hover"
       viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      className="group bg-bg-primary border border-white/5 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-500"
+      transition={{ duration: 0.8, delay: index * 0.1 }}
+      onClick={onOpenDetails}
+      className="group relative bg-bg-section border border-white/5 rounded-3xl overflow-hidden cursor-pointer hover:border-white/20 transition-all duration-700 aspect-[4/5] md:aspect-[4/3] lg:aspect-square flex flex-col"
     >
-      {/* Image Area */}
-      <div className="relative aspect-video overflow-hidden bg-bg-section">
-        <img
+      {/* Background Image & Video with Grayscale Toggle */}
+      <div className="absolute inset-0 z-0">
+        {/* Static Image */}
+        <motion.img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+          className="w-full h-full object-cover grayscale brightness-50 transition-all duration-1000 ease-out"
+          variants={{
+            hover: { grayscale: 0, brightness: 0.75, scale: 1.1, opacity: project.videoUrl ? 0 : 1 },
+            initial: { grayscale: 1, brightness: 0.5, scale: 1, opacity: 1 }
+          }}
         />
         
-        {/* Play Button Overlay (if video exists) */}
+        {/* Hover Video Preview */}
         {project.videoUrl && (
-          <button
-            onClick={() => onVideoClick(project.videoUrl)}
-            className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          <motion.div 
+            className="absolute inset-0 overflow-hidden"
+            variants={{
+              hover: { opacity: 1 },
+              initial: { opacity: 0 }
+            }}
+            transition={{ duration: 0.7 }}
           >
-            <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center text-black scale-90 group-hover:scale-100 transition-transform duration-500">
-              <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-          </button>
+            <img 
+              src={project.videoUrl} 
+              alt={`${project.title} preview`}
+              className="w-full h-full object-cover scale-110"
+            />
+          </motion.div>
         )}
+        
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80" />
       </div>
 
-      {/* Content Area */}
-      <div className="p-8">
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map(tag => (
-            <span key={tag} className="text-[0.6rem] font-bold uppercase tracking-widest text-text-secondary border border-white/10 px-2 py-1 rounded">
+      {/* Content Area - Bottom Aligned */}
+      <div className="relative z-10 mt-auto p-8 md:p-10">
+        <div className="flex flex-wrap gap-2 mb-6">
+          {project.tags.slice(0, 3).map(tag => (
+            <span key={tag} className="text-[0.6rem] font-bold uppercase tracking-widest text-white/60 border border-white/10 px-3 py-1.5 rounded-full backdrop-blur-md">
               {tag}
             </span>
           ))}
         </div>
         
-        <h3 className="text-xl font-heading font-bold text-white mb-3 group-hover:text-text-primary transition-colors">
+        <h3 className="text-2xl md:text-3xl font-heading font-bold text-white tracking-tighter mb-4 group-hover:translate-x-2 transition-transform duration-500">
           {project.title}
         </h3>
         
-        <p className="text-sm text-text-secondary leading-relaxed mb-6 line-clamp-2">
+        <p className="text-sm text-white/60 leading-relaxed max-w-sm line-clamp-2 italic">
           {project.description}
         </p>
+      </div>
 
-        <div className="flex items-center gap-6 mt-auto">
-          <a
-            href={project.link}
-            className="text-xs font-bold uppercase tracking-widest text-white hover:text-text-secondary transition-colors inline-flex items-center gap-2"
-          >
-            Case Study
-            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </a>
-          {project.github && (
-            <a
-              href={project.github}
-              className="text-xs font-bold uppercase tracking-widest text-white hover:text-text-secondary transition-colors"
-            >
-              Github
-            </a>
-          )}
-        </div>
+      {/* "View Details" Hover Overlay - Reduced dimming and removed blur to keep the video clear */}
+      <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/20">
+        <motion.div 
+          initial={{ scale: 0.8, opacity: 0 }}
+          whileHover={{ scale: 1.1 }}
+          className="w-32 h-32 rounded-full border border-white flex items-center justify-center"
+        >
+          <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white">
+            View Details
+          </span>
+        </motion.div>
       </div>
     </motion.div>
   );
 }
+

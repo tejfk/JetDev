@@ -1,6 +1,4 @@
 import { motion } from 'framer-motion';
-import logo from '../assets/logo-jp.svg';
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -11,18 +9,9 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-bg-primary border-t border-white/5 py-12 px-6">
+    <footer className="bg-bg-primary border-t border-white/5 pt-12 pb-6 px-6">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
 
-        {/* Logo / Name */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="flex items-center gap-3"
-        >
-          <img src={logo} alt="Logo" className="w-10 h-10 object-contain" />
-        </motion.div>
 
         {/* Social Links */}
         <div className="flex gap-8">
@@ -53,7 +42,7 @@ export default function Footer() {
       </div>
 
       {/* Extreme Bottom Accent */}
-      <div className="max-w-7xl mx-auto mt-12 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+      <div className="max-w-7xl mx-auto mt-8 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
     </footer>
   );
 }
