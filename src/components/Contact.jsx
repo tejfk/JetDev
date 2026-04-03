@@ -2,21 +2,45 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Contact() {
-  const [formState, setFormState] = useState('idle'); // idle | sending | sent
+  const [formState, setFormState] = useState('idle'); // idle | sending | sent | error
   const [form, setForm] = useState({ name: '', email: '', message: '' });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setFormState('sending');
-    setTimeout(() => {
-      setFormState('sent');
-      setForm({ name: '', email: '', message: '' });
-      setTimeout(() => setFormState('idle'), 3000);
-    }, 1500);
+
+    try {
+      const formData = new FormData();
+      formData.append("access_key", "ca4be9d3-fd9b-457a-ab86-202a73878584");
+      formData.append("name", form.name);
+      formData.append("email", form.email);
+      formData.append("message", form.message);
+      formData.append("subject", `New Message from Portfolio - ${form.name}`);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setFormState('sent');
+        setForm({ name: '', email: '', message: '' });
+        setTimeout(() => setFormState('idle'), 5000);
+      } else {
+        setFormState('error');
+        setTimeout(() => setFormState('idle'), 5000);
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setFormState('error');
+      setTimeout(() => setFormState('idle'), 5000);
+    }
   };
 
   return (
@@ -138,6 +162,11 @@ export default function Contact() {
                 {formState === 'sent' && (
                   <motion.span key="sent" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="flex items-center gap-2">
                     Message Sent
+                  </motion.span>
+                )}
+                {formState === 'error' && (
+                  <motion.span key="error" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="text-red-500">
+                    Error sending...
                   </motion.span>
                 )}
               </AnimatePresence>

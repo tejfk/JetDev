@@ -63,21 +63,21 @@ export default function Hero({ onOpenResume }) {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="order-2 lg:order-1 text-center lg:text-left"
+          className="order-2 lg:order-1 text-left relative z-10"
         >
           <motion.p
             variants={wordVariants}
-            className="text-text-secondary text-sm font-bold uppercase tracking-[0.3em] mb-6"
+            className="text-text-secondary text-[0.65rem] md:text-sm font-bold uppercase tracking-[0.3em] mb-6"
           >
             Frontend Web Developer | AI-Assisted Developer
           </motion.p>
 
-          <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.9] tracking-tighter flex flex-wrap justify-center lg:justify-start gap-x-4">
+          <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.9] tracking-tighter flex flex-wrap justify-start gap-x-4">
             {words.map((word, i) => (
               <motion.span
                 key={i}
                 variants={wordVariants}
-                className={word === "Jancinal" ? "opacity-40 italic block w-full lg:w-auto" : ""}
+                className={word === "Jancinal" ? "opacity-40 italic lg:w-auto" : ""}
               >
                 {word}
                 {word === "C." && <br className="hidden lg:block" />}
@@ -87,14 +87,14 @@ export default function Hero({ onOpenResume }) {
 
           <motion.p
             variants={wordVariants}
-            className="mt-8 text-lg md:text-xl text-text-secondary max-w-lg mx-auto lg:mx-0 leading-relaxed font-medium"
+            className="mt-8 text-lg md:text-xl text-text-secondary max-w-lg mx-0 leading-relaxed font-medium"
           >
             I specialize in building modern web applications with a focus on AI-assisted development, rapid prototyping, and delivering functional digital solutions.
           </motion.p>
 
           <motion.div
             variants={wordVariants}
-            className="mt-12 flex flex-wrap justify-center lg:justify-start gap-4"
+            className="mt-12 flex flex-wrap justify-start gap-4"
           >
             <Magnetic>
               <a href="#projects" className="btn-bw-primary">
@@ -118,7 +118,7 @@ export default function Hero({ onOpenResume }) {
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
-          className="order-1 lg:order-2 flex justify-center lg:justify-end relative group"
+          className="order-1 lg:order-2 flex justify-center lg:justify-end relative group lg:mb-0 mt-8 lg:mt-0"
         >
           {/* Subtle Glow - Mouse Reactive */}
           <motion.div
@@ -126,22 +126,22 @@ export default function Hero({ onOpenResume }) {
               x: useSpring(mouseX, { damping: 40, stiffness: 200 }),
               y: useSpring(mouseY, { damping: 40, stiffness: 200 })
             }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] aspect-square bg-white/[0.02] rounded-full blur-[120px] pointer-events-none z-0"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] aspect-square bg-white/[0.01] rounded-full blur-[100px] pointer-events-none z-0"
           />
 
-          <div className="relative z-10 w-full md:w-[40rem] lg:w-[55rem] h-[40vh] md:h-[65vh] lg:h-[85vh] flex items-center justify-center">
+          <div className="relative z-10 w-full md:w-[40rem] lg:w-[55rem] h-[55vh] md:h-[65vh] lg:h-[85vh] flex items-center justify-center">
             {/* The Image Wrapper - Pure black container to eliminate box edge visible on black background */}
             <div
-              className="relative w-full h-full grayscale group-hover:grayscale-0 transition-all duration-1000 ease-in-out flex items-center justify-center"
+              className="relative w-full h-full grayscale group-hover:grayscale-0 transition-all duration-1000 ease-in-out flex items-center justify-center p-2"
               style={{
-                WebkitMaskImage: 'radial-gradient(circle at 50% 40%, black 75%, transparent 100%)',
-                maskImage: 'radial-gradient(circle at 50% 40%, black 75%, transparent 100%)'
+                WebkitMaskImage: 'radial-gradient(circle at 50% 40%, black 80%, transparent 100%)',
+                maskImage: 'radial-gradient(circle at 50% 40%, black 80%, transparent 100%)'
               }}
             >
               <img
                 src={profileImg}
                 alt="Jet Jet C. Jancinal"
-                className="w-full h-full object-contain contrast-[1.1] brightness-[1.05] scale-110 lg:scale-[1.2] origin-center"
+                className="w-full h-full object-contain contrast-[1.1] brightness-[1.05] scale-[1.5] lg:scale-[1.2] origin-center"
               />
             </div>
           </div>
