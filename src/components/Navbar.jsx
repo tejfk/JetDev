@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Magnetic from './Magnetic';
 
 const navLinks = [
-  { label: 'Home', href: '#' },
+  { label: 'Home', href: '#home' },
   { label: 'Projects', href: '#projects' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
@@ -13,40 +13,80 @@ const navLinks = [
 export default function Navbar({ onOpenResume }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+      
+      // Basic scroll spy
+      const sections = navLinks.map(link => link.href.substring(1));
+      let current = '';
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= window.innerHeight / 3 && rect.bottom >= window.innerHeight / 3) {
+            current = section;
+          }
+        }
+      }
+      
+      if (current) {
+        setActiveSection(current);
+      } else if (window.scrollY === 0) {
+        setActiveSection('home');
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-bg-primary/80 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-8'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+        scrolled ? 'bg-bg-primary/70 backdrop-blur-xl border-b border-white/[0.08] py-4 shadow-[0_4px_30px_rgba(0,0,0,0.5)]' : 'bg-transparent py-8'
       }`}
     >
-      <div className="max-w-screen-2xl mx-auto px-10 md:px-20 flex items-center justify-between">
+      <div className="max-w-screen-2xl mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between">
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-16">
-          {navLinks.map((link, i) => (
-            <motion.a
-              key={link.label}
-              href={link.href}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="nav-link"
-            >
-              {link.label}
-            </motion.a>
-          ))}
+        <div className="hidden md:flex items-center gap-12">
+          {navLinks.map((link, i) => {
+            const isActive = activeSection === link.href.substring(1) || (link.href === '#' && activeSection === 'home');
+            
+            return (
+              <motion.a
+                key={link.label}
+                href={link.href === '#home' ? '#' : link.href}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}
+                className="relative text-lg font-semibold text-text-secondary hover:text-white transition-colors py-2 px-1"
+              >
+                {link.label}
+                {isActive && (
+                  <motion.div
+                    layoutId="navbar-active"
+                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-white rounded-full text-glow"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </motion.a>
+            );
+          })}
         </div>
 
         {/* Desktop CTA */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           <Magnetic>
-            <a href="#contact" className="btn-bw-primary translate-y-2">
+            <button onClick={onOpenResume} className="text-text-secondary hover:text-white font-medium transition-colors text-sm uppercase tracking-widest">
+              Resume
+            </button>
+          </Magnetic>
+          <Magnetic>
+            <a href="#contact" className="btn-bw-primary scale-90 md:scale-100 origin-right">
               Hire Me
             </a>
           </Magnetic>
@@ -55,17 +95,14 @@ export default function Navbar({ onOpenResume }) {
         {/* Mobile Toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-white"
+          className="md:hidden text-white p-2 z-50"
           aria-label="Toggle Menu"
         >
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d={mobileOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-            />
-          </svg>
+          <motion.div animate={mobileOpen ? "open" : "closed"} className="flex flex-col gap-1.5">
+            <motion.span variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 8 } }} className="w-6 h-0.5 bg-white block transition-all" />
+            <motion.span variants={{ closed: { opacity: 1 }, open: { opacity: 0 } }} className="w-6 h-0.5 bg-white block transition-all" />
+            <motion.span variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: -45, y: -8 } }} className="w-6 h-0.5 bg-white block transition-all" />
+          </motion.div>
         </button>
       </div>
 
@@ -73,26 +110,37 @@ export default function Navbar({ onOpenResume }) {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-bg-primary border-b border-white/5 overflow-hidden"
+            initial={{ opacity: 0, y: -20, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="absolute top-full left-0 right-0 md:hidden bg-bg-section/95 backdrop-blur-2xl border-b border-white/10 shadow-2xl overflow-hidden"
           >
-            <div className="flex flex-col gap-4 px-6 py-8">
-              {navLinks.map((link) => (
-                <a
+            <div className="flex flex-col gap-6 px-8 py-10">
+              {navLinks.map((link, i) => (
+                <motion.a
                   key={link.label}
-                  href={link.href}
+                  href={link.href === '#home' ? '#' : link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-lg font-medium text-text-secondary hover:text-white transition-colors"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="text-2xl font-bold text-text-secondary hover:text-white transition-colors"
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
+              <div className="w-full h-px bg-white/10 my-2" />
+              <button 
+                onClick={() => { setMobileOpen(false); onOpenResume(); }}
+                className="text-left text-lg font-bold text-white uppercase tracking-widest"
+              >
+                View Resume
+              </button>
               <a
                 href="#contact"
                 onClick={() => setMobileOpen(false)}
-                className="btn-bw-primary w-full text-center mt-4"
+                className="btn-bw-primary w-full text-center mt-2"
               >
                 Hire Me
               </a>

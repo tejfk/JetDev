@@ -46,11 +46,18 @@ function App() {
 
   return (
     <>
+      {/* Global Background Elements */}
+      <div className="fixed inset-0 z-[-1] overflow-hidden bg-bg-primary pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-white opacity-[0.012] blur-[100px] animate-blob mix-blend-screen" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-white opacity-[0.015] blur-[120px] animate-blob mix-blend-screen" style={{ animationDelay: '5s', animationDuration: '25s' }} />
+        <div className="absolute top-[40%] left-[20%] w-[30vw] h-[30vw] rounded-full bg-white opacity-[0.01] blur-[90px] animate-blob mix-blend-screen" style={{ animationDelay: '10s', animationDuration: '30s' }} />
+      </div>
+
       <div className="noise-panel" />
       <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
       
       <Navbar onOpenResume={() => setIsResumeOpen(true)} />
-      <main className="bg-bg-primary">
+      <main className="bg-transparent">
         <Hero onOpenResume={() => setIsResumeOpen(true)} />
         <Stats />
         <About />
