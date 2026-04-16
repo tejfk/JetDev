@@ -21,13 +21,13 @@ export default function ProjectCard({ project, index, onOpenDetails }) {
       className="group relative bg-[#0a0a0a] border border-white/[0.05] rounded-[2rem] overflow-hidden cursor-pointer hover:border-white/20 transition-colors duration-500 aspect-[4/5] md:aspect-video flex flex-col shadow-2xl"
     >
       {/* Background Image & Video with Grayscale Toggle */}
-      <div className="absolute inset-0 z-0 bg-[#F7F5F2]">
+      <div className="absolute inset-0 z-0" style={{ backgroundColor: project.backgroundColor || '#050505' }}>
         {/* Static Image */}
         <motion.img
           src={project.image}
           alt={project.title}
           loading="lazy"
-          className="w-full h-full object-contain transition-all duration-700 ease-out"
+          className={`w-full h-full transition-all duration-700 ease-out ${project.containImage ? 'object-contain' : 'object-cover'}`}
           style={{ objectPosition: project.objectPosition || 'center' }}
           variants={{
              hover: { scale: 1.05, opacity: project.videoUrl ? 0 : 0.8 },
@@ -50,13 +50,13 @@ export default function ProjectCard({ project, index, onOpenDetails }) {
                 src={project.videoUrl} 
                 alt={`${project.title} preview`}
                 loading="lazy"
-                className="w-full h-full object-contain"
+                className={`w-full h-full ${project.containImage ? 'object-contain' : 'object-cover'}`}
               />
             )}
           </motion.div>
         )}
         
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90" />
       </div>
 
       {/* Content Area - Bottom Aligned */}

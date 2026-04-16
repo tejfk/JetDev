@@ -15,6 +15,8 @@ const projects = [
     websiteUrl: "https://bt-cafe.vercel.app/",
     github: "#",
     objectPosition: "left",
+    containImage: true,
+    backgroundColor: "#F7F5F2",
   },
   {
     id: 2,

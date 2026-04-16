@@ -32,12 +32,12 @@ export default function ProjectModal({ project, onClose }) {
 
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Image Side */}
-            <div className="relative h-64 lg:h-auto min-h-[400px] bg-[#F7F5F2]">
+            <div className="relative h-64 lg:h-auto min-h-[400px]" style={{ backgroundColor: project.backgroundColor || 'var(--color-bg-primary)' }}>
               <img
                 src={project.image}
                 alt={project.title}
-                className="absolute inset-0 w-full h-full object-contain transition-all duration-700"
-                style={{ objectPosition: 'center' }}
+                className={`absolute inset-0 w-full h-full transition-all duration-700 ${project.containImage ? 'object-contain' : 'object-cover grayscale hover:grayscale-0'}`}
+                style={{ objectPosition: project.objectPosition || 'center' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-bg-section via-transparent to-transparent lg:hidden" />
             </div>
