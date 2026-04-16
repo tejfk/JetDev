@@ -110,13 +110,13 @@ export default function Navbar({ onOpenResume }) {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="absolute top-full left-0 right-0 md:hidden bg-bg-section/95 backdrop-blur-2xl border-b border-white/10 shadow-2xl overflow-hidden"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute top-0 left-0 right-0 h-screen md:hidden bg-bg-primary/95 backdrop-blur-3xl border-b border-white/10 shadow-2xl overflow-hidden z-[40]"
           >
-            <div className="flex flex-col gap-6 px-8 py-10">
+            <div className="flex flex-col gap-6 px-10 py-32 h-full">
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.label}

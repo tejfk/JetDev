@@ -21,15 +21,17 @@ export default function ProjectCard({ project, index, onOpenDetails }) {
       className="group relative bg-[#0a0a0a] border border-white/[0.05] rounded-[2rem] overflow-hidden cursor-pointer hover:border-white/20 transition-colors duration-500 aspect-[4/5] md:aspect-video flex flex-col shadow-2xl"
     >
       {/* Background Image & Video with Grayscale Toggle */}
-      <div className="absolute inset-0 z-0 bg-[#050505]">
+      <div className="absolute inset-0 z-0 bg-[#F7F5F2]">
         {/* Static Image */}
         <motion.img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover transition-all duration-700 ease-out"
+          loading="lazy"
+          className="w-full h-full object-contain transition-all duration-700 ease-out"
+          style={{ objectPosition: project.objectPosition || 'center' }}
           variants={{
-             hover: { scale: 1.05, opacity: project.videoUrl ? 0 : 0.4 },
-             initial: { scale: 1, opacity: 0.3 }
+             hover: { scale: 1.05, opacity: project.videoUrl ? 0 : 0.8 },
+             initial: { scale: 1, opacity: 0.6 }
           }}
         />
         
@@ -38,7 +40,7 @@ export default function ProjectCard({ project, index, onOpenDetails }) {
           <motion.div 
             className="absolute inset-0 overflow-hidden"
             variants={{
-              hover: { opacity: 0.5, scale: 1.05 },
+              hover: { opacity: 0.7, scale: 1.05 },
               initial: { opacity: 0, scale: 1 }
             }}
             transition={{ duration: 0.5, ease: "easeOut" }}
@@ -47,13 +49,14 @@ export default function ProjectCard({ project, index, onOpenDetails }) {
               <img 
                 src={project.videoUrl} 
                 alt={`${project.title} preview`}
-                className="w-full h-full object-cover"
+                loading="lazy"
+                className="w-full h-full object-contain"
               />
             )}
           </motion.div>
         )}
         
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
       </div>
 
       {/* Content Area - Bottom Aligned */}

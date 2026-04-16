@@ -9,6 +9,7 @@ import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ResumeModal from './components/ResumeModal';
+import Preloader from './components/Preloader';
 
 function App() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
@@ -46,6 +47,7 @@ function App() {
 
   return (
     <>
+      <Preloader />
       {/* Global Background Elements */}
       <div className="fixed inset-0 z-[-1] overflow-hidden bg-bg-primary pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-white opacity-[0.012] blur-[100px] animate-blob mix-blend-screen" />

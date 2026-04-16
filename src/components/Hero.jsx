@@ -76,7 +76,7 @@ export default function Hero({ onOpenResume }) {
 
           <motion.h1 
             variants={itemVariants}
-            className="font-heading text-[3.5rem] md:text-7xl lg:text-[5.5rem] font-bold text-white leading-[1] tracking-tighter"
+            className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold text-white leading-[1.1] md:leading-[1] tracking-tighter"
           >
             Crafting Digital <br className="hidden md:block"/>
             <span className="font-editorial italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/50 tracking-normal pr-4">
@@ -86,7 +86,7 @@ export default function Hero({ onOpenResume }) {
 
           <motion.p
             variants={itemVariants}
-            className="mt-8 text-lg md:text-xl text-text-secondary max-w-xl mx-0 leading-relaxed font-medium"
+            className="mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-text-secondary max-w-xl mx-0 leading-relaxed font-medium"
           >
             I'm <span className="text-white hover:text-white/80 transition-colors cursor-default">Jet Jet C. Jancinal</span>—a Frontend Web Developer specializing in AI-assisted development, high-performance web apps, and premium user interfaces.
           </motion.p>
@@ -151,7 +151,8 @@ export default function Hero({ onOpenResume }) {
               <img
                 src={profileImg}
                 alt="Jet Jet C. Jancinal"
-                className="w-full h-full object-contain contrast-[1.15] brightness-[1.1] scale-[1.2] lg:scale-[1.1] origin-center drop-shadow-2xl"
+                loading="lazy"
+                className="w-full h-full object-contain contrast-[1.15] brightness-[1.1] scale-[1.1] sm:scale-[1.2] lg:scale-[1.1] origin-center drop-shadow-2xl"
               />
             </div>
             

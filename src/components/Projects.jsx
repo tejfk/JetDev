@@ -6,14 +6,15 @@ import ProjectModal from './ProjectModal';
 const projects = [
   {
     id: 1,
-    title: "Atenay's Flower Shop",
-    description: "A beautiful, interactive e-commerce platform for floral crafts, featuring custom themes and budget-friendly bouquet selections.",
-    detailedDescription: "A specialized floral e-commerce platform designed for personalized gifting. It features dynamic theme switching, a custom bouquet builder, and a seamless checkout experience. Built with React and Framer Motion for premium interactivity.",
-    image: "/assets/flower_shop.png",
-    videoUrl: "/assets/flower_shop_hover.webp",
-    tags: ["React", "E-commerce", "Framer Motion", "UI/UX"],
-    websiteUrl: "https://atenays-flower-shop.vercel.app/",
+    title: "Brew Theory | BTCafe",
+    description: "A premium, cinematic digital café experience featuring interactive 3D elements and immersive storytelling.",
+    detailedDescription: "An editorial-inspired web platform for a modern café. Built with React 19 and Tailwind v4, it integrates Spline 3D scenes, cinematic scroll-triggered animations via Framer Motion, and a sophisticated smooth-scrolling experience using Lenis. The project emphasizes visual excellence and modern typography.",
+    image: "/assets/btcafe_final.png",
+    videoUrl: "/assets/btcafe_final.png",
+    tags: ["React", "TypeScript", "3D Design", "Framer Motion"],
+    websiteUrl: "https://bt-cafe.vercel.app/",
     github: "#",
+    objectPosition: "left",
   },
   {
     id: 2,
@@ -64,7 +65,7 @@ export default function Projects() {
                  Selected Works
                </p>
             </div>
-            <h2 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter">
+            <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter">
               Featured Projects<span className="text-white/20">.</span>
             </h2>
           </div>
@@ -79,7 +80,7 @@ export default function Projects() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12"
         >
           {projects.map((project, i) => (
             <ProjectCard
