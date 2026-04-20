@@ -1,15 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense, lazy } from 'react';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Stats from './components/Stats';
-import About from './components/About';
-import Projects from './components/Projects';
-import Education from './components/Education';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ResumeModal from './components/ResumeModal';
 import Preloader from './components/Preloader';
+
+// Lazy loaded below-the-fold components to significantly improve Top Level parsing performance
+const Stats = lazy(() => import('./components/Stats'));
+const Services = lazy(() => import('./components/Services'));
+const About = lazy(() => import('./components/About'));
+const WhyHireMe = lazy(() => import('./components/WhyHireMe'));
+const FeaturedProject = lazy(() => import('./components/FeaturedProject'));
+const Projects = lazy(() => import('./components/Projects'));
+const Education = lazy(() => import('./components/Education'));
+const CallToAction = lazy(() => import('./components/CallToAction'));
+const Contact = lazy(() => import('./components/Contact'));
 
 function App() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
@@ -61,11 +67,17 @@ function App() {
       <Navbar onOpenResume={() => setIsResumeOpen(true)} />
       <main className="bg-transparent">
         <Hero onOpenResume={() => setIsResumeOpen(true)} />
-        <Stats />
-        <About />
-        <Projects />
-        <Education />
-        <Contact />
+        <Suspense fallback={<div className="h-screen w-full flex items-center justify-center opacity-0 transition-opacity duration-1000" />}>
+          <Stats />
+          <Services />
+          <About />
+          <WhyHireMe />
+          <FeaturedProject />
+          <Projects />
+          <Education />
+          <CallToAction />
+          <Contact />
+        </Suspense>
       </main>
       <Footer />
     </>

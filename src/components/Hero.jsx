@@ -78,9 +78,9 @@ export default function Hero({ onOpenResume }) {
             variants={itemVariants}
             className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold text-white leading-[1.1] md:leading-[1] tracking-tighter"
           >
-            Crafting Digital <br className="hidden md:block"/>
+            I Build Interfaces <br className="hidden md:block"/>
             <span className="font-editorial italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/50 tracking-normal pr-4">
-              Experiences.
+              That Convert.
             </span>
           </motion.h1>
 
@@ -88,7 +88,14 @@ export default function Hero({ onOpenResume }) {
             variants={itemVariants}
             className="mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-text-secondary max-w-xl mx-0 leading-relaxed font-medium"
           >
-            I'm <span className="text-white hover:text-white/80 transition-colors cursor-default">Jet Jet C. Jancinal</span>—a Frontend Web Developer specializing in AI-assisted development, high-performance web apps, and premium user interfaces.
+            Modern, high-performing web experiences — designed to engage users and drive results.
+          </motion.p>
+
+          <motion.p
+            variants={itemVariants}
+            className="mt-4 text-sm sm:text-base text-white/40 max-w-lg mx-0 leading-relaxed"
+          >
+            I'm <span className="text-white/70">Jet-Jet</span> — a frontend developer obsessed with clean code, AI-powered workflows, and pixel-perfect design.
           </motion.p>
 
           <motion.div
@@ -97,19 +104,19 @@ export default function Hero({ onOpenResume }) {
           >
             <Magnetic>
               <a href="#projects" className="btn-bw-primary group">
-                View My Work
+                View Projects
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </a>
             </Magnetic>
             <Magnetic>
-              <button
-                onClick={onOpenResume}
+              <a
+                href="#contact"
                 className="btn-bw-secondary"
               >
-                Download CV
-              </button>
+                Hire Me
+              </a>
             </Magnetic>
           </motion.div>
           

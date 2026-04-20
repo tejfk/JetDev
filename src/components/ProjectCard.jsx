@@ -62,7 +62,7 @@ export default function ProjectCard({ project, index, onOpenDetails }) {
       {/* Content Area - Bottom Aligned */}
       <div className="relative z-10 mt-auto p-8 lg:p-10 flex flex-col justify-end h-full">
         <div className="flex flex-wrap gap-2 mb-6 transform transition-transform duration-500 group-hover:-translate-y-2">
-          {project.tags.slice(0, 3).map(tag => (
+          {project.tags.slice(0, 4).map(tag => (
             <span key={tag} className="text-[0.65rem] font-bold uppercase tracking-widest text-white/80 border border-white/10 bg-white/5 px-4 py-2 rounded-full backdrop-blur-md">
               {tag}
             </span>

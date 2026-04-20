@@ -47,7 +47,7 @@ export default function About() {
             className="hidden lg:flex flex-col gap-6 mt-12 pl-8 border-l border-white/10"
           >
             <p className="text-xl font-heading text-white/80 leading-relaxed max-w-sm italic">
-              "Dedicated to the art of clean code, seamless interactions, and functional scalable systems."
+              "I build because I'm curious. I ship because I care. And I never stop because there's always something better to create."
             </p>
             <p className="text-sm font-bold uppercase tracking-widest text-text-muted">
               Based in Cebu City, PH
@@ -69,7 +69,7 @@ export default function About() {
                Background
              </h3>
              <p className="text-text-secondary leading-relaxed text-lg">
-               I am a motivated Information Technology graduate specialized in building and deploying modern web applications. I focus on delivering functional digital solutions that combine clean code architectures with powerful technologies.
+               I'm a fresh IT graduate from Cebu Eastern College with an obsession for building things people actually enjoy using. What started as curiosity in web development turned into a deep passion for crafting interfaces that feel alive — fast, responsive, and thoughtfully designed.
              </p>
           </motion.div>
 
@@ -85,7 +85,7 @@ export default function About() {
                AI Integration
              </h3>
              <p className="text-text-secondary leading-relaxed">
-               Expertise in AI-assisted development and rapid prototyping. I iterate on complex systems with speed and precision, using state-of-the-art tools.
+               I don't just code — I leverage AI tools to build smarter and ship faster. From intelligent prototyping to AI-assisted debugging, my workflow is built for speed without sacrificing quality.
              </p>
           </motion.div>
 
@@ -102,7 +102,7 @@ export default function About() {
                  Philosophy
                </h3>
                <p className="text-text-secondary leading-relaxed">
-                 Committed to staying at the forefront of the industry, delivering products that help businesses succeed through cutting-edge technology.
+                 I believe the best developers never stop learning. Every project is a chance to push boundaries, explore new patterns, and deliver something that truly matters to the people who use it.
                </p>
             </div>
             <div className="mt-8">
