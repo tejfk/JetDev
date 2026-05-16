@@ -28,8 +28,8 @@ export default function ResumeModal({ isOpen, onClose }) {
           <div className="absolute top-0 left-0 right-0 p-6 md:p-8 flex justify-between items-center z-[101]">
             <div className="flex gap-4">
                <a 
-                href="/resume.pdf"
-                download="Jet-Dev-Resume.pdf"
+                href="/assets/resume/Jet-Jet_Jancinal_Resume.pdf"
+                download="Jet-Jet_Jancinal_Resume.pdf"
                 className="px-6 py-2 bg-white text-black text-[0.65rem] font-bold rounded-full hover:bg-white/90 transition-colors uppercase shadow-lg"
                 title="Download Resume"
               >
@@ -66,7 +66,7 @@ export default function ResumeModal({ isOpen, onClose }) {
                     Jet Jet C. Jancinal
                   </h3>
                   <p className="text-xs font-bold uppercase tracking-[0.3em] text-white/40">
-                    Frontend & AI-Assisted Developer
+                    BSIT Graduate | Aspiring IT Professional
                   </p>
                 </div>
 
@@ -91,7 +91,7 @@ export default function ResumeModal({ isOpen, onClose }) {
 
                 <div className="pt-10">
                    <a 
-                    href="/resume.pdf"
+                    href="/assets/resume/Jet-Jet_Jancinal_Resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center gap-3 px-8 py-3 rounded-full border border-white/10 bg-white/[0.02] text-white hover:bg-white/5 transition-all duration-500"
@@ -111,7 +111,7 @@ export default function ResumeModal({ isOpen, onClose }) {
               /* Native PDF Viewer for Desktop with "Clipped Scrollbar" technique */
               <div className="w-full h-full overflow-hidden">
                 <iframe 
-                  src="/resume.pdf#toolbar=0" 
+                  src="/assets/resume/Jet-Jet_Jancinal_Resume.pdf#toolbar=0" 
                   className="w-[calc(100%+16px)] h-full border-none"
                   title="Resume Preview"
                 />

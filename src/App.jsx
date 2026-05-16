@@ -11,7 +11,7 @@ const Stats = lazy(() => import('./components/Stats'));
 const Services = lazy(() => import('./components/Services'));
 const About = lazy(() => import('./components/About'));
 const WhyHireMe = lazy(() => import('./components/WhyHireMe'));
-const FeaturedProject = lazy(() => import('./components/FeaturedProject'));
+
 const Projects = lazy(() => import('./components/Projects'));
 const Education = lazy(() => import('./components/Education'));
 const CallToAction = lazy(() => import('./components/CallToAction'));
@@ -72,7 +72,7 @@ function App() {
           <Services />
           <About />
           <WhyHireMe />
-          <FeaturedProject />
+
           <Projects />
           <Education />
           <CallToAction />

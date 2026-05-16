@@ -60,7 +60,7 @@ export default function Contact() {
           <div className="inline-flex items-center gap-3 mb-6 px-4 py-2 rounded-full border border-white/10 bg-white/[0.02] backdrop-blur-sm w-fit">
              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
              <p className="text-text-secondary text-xs sm:text-sm font-bold uppercase tracking-[0.2em] pt-[2px]">
-               Available for Freelance
+               Available for Work
              </p>
           </div>
           
@@ -151,7 +151,7 @@ export default function Contact() {
                   rows={4}
                   value={form.message}
                   onChange={handleChange}
-                  placeholder="Tell me about your vision..."
+                  placeholder="Leave a message or inquiry..."
                   className="w-full bg-black/20 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-white/30 focus:bg-white/[0.05] transition-all resize-none placeholder:text-white/20"
                 />
               </div>

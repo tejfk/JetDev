@@ -9,7 +9,7 @@ const timeline = [
     description: 'Focused on core Information Technology principles, software engineering, and advanced web development. Developed a strong foundation in building robust, scalable systems and modern user architectures.',
   },
   {
-    school: 'Abellana National School',
+    school: 'Abellana National High School',
     degree: 'Junior & Senior High School',
     period: '2016 – 2022',
     status: 'Graduated',

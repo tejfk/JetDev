@@ -86,16 +86,9 @@ export default function Hero({ onOpenResume }) {
 
           <motion.p
             variants={itemVariants}
-            className="mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-text-secondary max-w-xl mx-0 leading-relaxed font-medium"
+            className="mt-6 md:mt-8 text-sm sm:text-base text-white/40 max-w-lg mx-0 leading-relaxed"
           >
-            Modern, high-performing web experiences — designed to engage users and drive results.
-          </motion.p>
-
-          <motion.p
-            variants={itemVariants}
-            className="mt-4 text-sm sm:text-base text-white/40 max-w-lg mx-0 leading-relaxed"
-          >
-            I'm <span className="text-white/70">Jet-Jet</span> — a frontend developer obsessed with clean code, AI-powered workflows, and pixel-perfect design.
+            I'm <span className="text-white/70">Jet Jet C. Jancinal</span> — a BSIT graduate and aspiring IT professional with a passion for frontend development, AI automation, and building modern digital experiences.
           </motion.p>
 
           <motion.div

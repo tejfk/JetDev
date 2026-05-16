@@ -1,6 +1,22 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 export default function ProjectModal({ project, onClose }) {
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  // Reset loading state when project changes
+  useEffect(() => {
+    setIframeLoaded(false);
+  }, [project?.id]);
+
   if (!project) return null;
 
   return (
@@ -18,7 +34,7 @@ export default function ProjectModal({ project, onClose }) {
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
           onClick={(e) => e.stopPropagation()}
           data-lenis-prevent
-          className="relative bg-bg-section w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-[2rem] border border-white/10 shadow-2xl"
+          className="relative bg-bg-section w-full max-w-5xl max-h-[90vh] overflow-y-auto no-scrollbar rounded-[2rem] border border-white/10 shadow-2xl"
         >
           {/* Close Button */}
           <button
@@ -31,15 +47,50 @@ export default function ProjectModal({ project, onClose }) {
           </button>
 
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            {/* Image Side */}
-            <div className="relative h-64 lg:h-auto min-h-[400px] overflow-hidden" style={{ backgroundColor: project.backgroundColor || 'var(--color-bg-primary)' }}>
-              <img
-                src={project.image}
-                alt={project.title}
-                className={`absolute inset-0 w-full h-full transition-all duration-700 ${project.imageScale || ''} ${(project.modalContain ?? project.containImage) ? 'object-contain' : 'object-cover grayscale hover:grayscale-0'}`}
-                style={{ objectPosition: (project.modalPosition ?? project.objectPosition) || 'center' }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-bg-section via-transparent to-transparent lg:hidden" />
+            {/* Live Preview Side */}
+            <div
+              className="relative h-72 lg:h-auto min-h-[400px] lg:min-h-[600px] overflow-hidden rounded-t-[2rem] lg:rounded-tr-none lg:rounded-l-[2rem]"
+              style={{ backgroundColor: project.backgroundColor || 'var(--color-bg-primary)' }}
+            >
+              {isMobile ? (
+                /* Mobile: Static image fallback */
+                <>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    style={{ objectPosition: 'center top' }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-bg-section via-transparent to-transparent" />
+                </>
+              ) : (
+                /* Desktop: Live iframe embed */
+                <>
+                  {/* Loading spinner */}
+                  {!iframeLoaded && (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 z-10">
+                      <div className="w-8 h-8 border-2 border-white/10 border-t-white/60 rounded-full animate-spin" />
+                      <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white/30">Loading preview...</p>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 overflow-hidden">
+                    <iframe
+                      src={project.websiteUrl}
+                      title={`${project.title} Live Preview`}
+                      className={`h-full border-none transition-opacity duration-500 ${iframeLoaded ? 'opacity-100' : 'opacity-0'}`}
+                      style={{ width: 'calc(100% + 20px)' }}
+                      onLoad={() => setIframeLoaded(true)}
+                      sandbox="allow-scripts allow-same-origin"
+                      loading="lazy"
+                    />
+                  </div>
+                  {/* Live badge */}
+                  <div className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-black/60 backdrop-blur-md rounded-full px-3 py-1.5 border border-white/10">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                    <span className="text-[0.55rem] font-bold uppercase tracking-[0.15em] text-white/70">Live Preview</span>
+                  </div>
+                </>
+              )}
             </div>
 
             {/* Content Side */}

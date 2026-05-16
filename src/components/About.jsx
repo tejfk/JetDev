@@ -102,7 +102,7 @@ export default function About() {
                  Philosophy
                </h3>
                <p className="text-text-secondary leading-relaxed">
-                 I believe the best developers never stop learning. Every project is a chance to push boundaries, explore new patterns, and deliver something that truly matters to the people who use it.
+                 Committed to continuous learning and growth, delivering solutions that help people and teams succeed by applying modern technology thoughtfully.
                </p>
             </div>
             <div className="mt-8">
