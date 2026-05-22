@@ -39,7 +39,7 @@ export default function FeaturedProject() {
               {/* Image Side */}
               <div className="relative h-72 md:h-96 lg:h-auto lg:min-h-[500px] overflow-hidden group" style={{ backgroundColor: '#0a0a0a' }}>
                 <img
-                  src="/assets/thrift_studio.png"
+                  src="/assets/thrift_studio.webp"
                   alt="thriftstudio — Archival fashion digital experience"
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"

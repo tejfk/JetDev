@@ -18,30 +18,34 @@ export default function Navbar({ onOpenResume }) {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      
-      // Basic scroll spy
-      const sections = navLinks.map(link => link.href.substring(1));
-      let current = '';
-      
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= window.innerHeight / 3 && rect.bottom >= window.innerHeight / 3) {
-            current = section;
-          }
-        }
-      }
-      
-      if (current) {
-        setActiveSection(current);
-      } else if (window.scrollY === 0) {
-        setActiveSection('home');
-      }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // IntersectionObserver-based scroll spy (no layout thrashing)
+    const observers = [];
+    const sections = navLinks.map(link => link.href.substring(1));
+    
+    sections.forEach(sectionId => {
+      const element = document.getElementById(sectionId);
+      if (!element) return;
+      
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(sectionId);
+          }
+        },
+        { rootMargin: '-33% 0px -66% 0px', threshold: 0 }
+      );
+      observer.observe(element);
+      observers.push(observer);
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observers.forEach(obs => obs.disconnect());
+    };
   }, []);
 
   return (

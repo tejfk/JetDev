@@ -10,12 +10,12 @@ export default function Preloader() {
       setCounter((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
-          setTimeout(() => setLoading(false), 500);
+          setTimeout(() => setLoading(false), 200);
           return 100;
         }
-        return prev + 1;
+        return prev + 2;
       });
-    }, 20);
+    }, 8);
 
     return () => clearInterval(timer);
   }, []);

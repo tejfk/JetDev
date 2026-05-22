@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useInView } from 'framer-motion';
-import profileImg from '../assets/profile.png';
+import profileImg from '../assets/profile.webp';
 import Magnetic from './Magnetic';
 
 export default function Hero({ onOpenResume }) {
@@ -13,6 +13,9 @@ export default function Hero({ onOpenResume }) {
   const springY = useSpring(mouseY, { damping: 25, stiffness: 80 });
 
   useEffect(() => {
+    // Skip parallax on touch devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
     const handleMouseMove = (e) => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
@@ -22,7 +25,7 @@ export default function Hero({ onOpenResume }) {
       mouseY.set(y * 60);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [mouseX, mouseY]);
 
@@ -50,7 +53,7 @@ export default function Hero({ onOpenResume }) {
     "NEXT.JS", "UI/UX DESIGN", "AI-ASSISTED DEV"
   ];
   // Duplicate for seamless infinite loop
-  const marqueeItems = [...techStack, ...techStack, ...techStack, ...techStack];
+  const marqueeItems = [...techStack, ...techStack];
 
   return (
     <section
@@ -151,7 +154,6 @@ export default function Hero({ onOpenResume }) {
               <img
                 src={profileImg}
                 alt="Jet Jet C. Jancinal"
-                loading="lazy"
                 className="w-full h-full object-contain contrast-[1.15] brightness-[1.1] scale-[1.1] sm:scale-[1.2] lg:scale-[1.1] origin-center drop-shadow-2xl"
               />
             </div>
