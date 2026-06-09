@@ -30,13 +30,13 @@ export default function ProjectCard({ project, index, onOpenDetails }) {
           className={`w-full h-full transition-all duration-700 ease-out ${project.containImage ? 'object-contain' : 'object-cover'}`}
           style={{ objectPosition: project.objectPosition || 'center' }}
           variants={{
-             hover: { scale: 1.05, opacity: project.videoUrl ? 0 : 0.8 },
+             hover: { scale: 1.05, opacity: (project.videoUrl && project.playVideoOnHover !== false) ? 0 : 0.8 },
              initial: { scale: 1, opacity: 0.6 }
           }}
         />
         
         {/* Hover Video Preview */}
-        {project.videoUrl && (
+        {project.videoUrl && project.playVideoOnHover !== false && (
           <motion.div 
             className="absolute inset-0 overflow-hidden"
             variants={{
@@ -46,12 +46,23 @@ export default function ProjectCard({ project, index, onOpenDetails }) {
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
             {isHovered && (
-              <img 
-                src={project.videoUrl} 
-                alt={`${project.title} preview`}
-                loading="lazy"
-                className={`w-full h-full ${project.containImage ? 'object-contain' : 'object-cover'}`}
-              />
+              project.videoUrl.endsWith('.mp4') ? (
+                <video
+                  src={project.videoUrl}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className={`w-full h-full ${project.containImage ? 'object-contain' : 'object-cover'}`}
+                />
+              ) : (
+                <img 
+                  src={project.videoUrl} 
+                  alt={`${project.title} preview`}
+                  loading="lazy"
+                  className={`w-full h-full ${project.containImage ? 'object-contain' : 'object-cover'}`}
+                />
+              )
             )}
           </motion.div>
         )}

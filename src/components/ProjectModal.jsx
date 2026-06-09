@@ -52,7 +52,26 @@ export default function ProjectModal({ project, onClose }) {
               className="relative h-72 lg:h-auto min-h-[400px] lg:min-h-[600px] overflow-hidden rounded-t-[2rem] lg:rounded-tr-none lg:rounded-l-[2rem]"
               style={{ backgroundColor: project.backgroundColor || 'var(--color-bg-primary)' }}
             >
-              {isMobile ? (
+              {project.videoUrl && project.videoUrl.endsWith('.mp4') ? (
+                /* Live video preview */
+                <>
+                  <div className="absolute inset-0 overflow-hidden">
+                    <video
+                      src={project.videoUrl}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className={`w-full h-full ${project.containImage ? 'object-contain' : 'object-cover'}`}
+                    />
+                  </div>
+                  {/* Live badge */}
+                  <div className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-black/60 backdrop-blur-md rounded-full px-3 py-1.5 border border-white/10">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                    <span className="text-[0.55rem] font-bold uppercase tracking-[0.15em] text-white/70">Live Preview</span>
+                  </div>
+                </>
+              ) : isMobile ? (
                 /* Mobile: Static image fallback */
                 <>
                   <img
@@ -130,17 +149,19 @@ export default function ProjectModal({ project, onClose }) {
               )}
 
               <div className="mt-auto pt-8 border-t border-white/5 flex items-center gap-6 md:gap-8">
-                <a
-                  href={project.websiteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-bw-primary px-6 md:px-10"
-                >
-                  Visit Live
-                  <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
+                {project.websiteUrl && project.websiteUrl !== "#" && project.websiteUrl !== "" && (
+                  <a
+                    href={project.websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-bw-primary px-6 md:px-10"
+                  >
+                    Visit Live
+                    <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                )}
                 
                 {project.github && (
                   <a
