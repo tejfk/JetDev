@@ -36,6 +36,21 @@ const projects = [
     containImage: true,
     backgroundColor: "#FAF9F6",
   },
+  {
+    id: 3,
+    title: "Adlaw Café",
+    description: "A warm, sun-inspired café landing page rooted in Cebuano identity and student culture.",
+    detailedDescription: "An aesthetic web experience for Adlaw Café in Cebu. Built with Vite and GSAP, it features custom loading animations, sky/cloud parallax layering, text reveals, and a responsive menu showcase designed with high visual fidelity.",
+    problem: "Local coffee shops need digital experiences that capture their unique culture and connect directly with their student demographic.",
+    solution: "Created an immersive, scroll-triggered experience celebrating the Cebuano sun theme (Adlaw) with smooth micro-animations, student loyalty details, and a clean minimalist design.",
+    result: "A visually stunning, interactive storytelling page that elevates the brand's local identity and drives customer engagement.",
+    image: "/assets/adlaw-mockup.png",
+    tags: ["Vanilla JS", "GSAP", "Vite", "Aesthetic"],
+    websiteUrl: "https://adlaw-liard.vercel.app/",
+    github: "",
+    containImage: true,
+    backgroundColor: "#FEFAF4",
+  },
 ];
 
 export default function Projects() {
